@@ -55,6 +55,10 @@ Simulation
 
 
 
+## Circuit 3 bit DAC
+
+![Screenshot from 2023-02-07 00-16-45](https://user-images.githubusercontent.com/110079648/217058636-dcdef69d-e876-47c9-9377-2dc3df42b1cd.png)
+
 
 
 
