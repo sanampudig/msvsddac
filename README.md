@@ -15,11 +15,9 @@ Creating Inverter writen in Verilog
 
 After saving and closing, it will ask to create a symbol based on inputs and outputs to module.
 
-![image](https://user-images.githubusercontent.com/110079648/217045939-048c801f-1282-4c05-9286-402578ea1653.png)
-
 then create a schematic, to thest this block
 
-![image](https://user-images.githubusercontent.com/110079648/217046207-5cc86182-9082-4b0f-949d-92c5cc49349f.png)
+![image](https://user-images.githubusercontent.com/110079648/217049822-9f85bb26-a0a1-440e-b25b-1334225e4231.png)
 
 create a config file also for this test bench.
 
