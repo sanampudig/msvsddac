@@ -23,11 +23,19 @@ then create a schematic, to thest this block
 
 create a config file also for this test bench.
 
+![image](https://user-images.githubusercontent.com/110079648/217049140-b882c3d0-1a47-4832-900e-9ad5a603282a.png)
+
+
 ![image](https://user-images.githubusercontent.com/110079648/217046766-649bdbb3-1b69-497f-a20b-7b2b34998437.png)
 
 to simulate launch ADE-L and chage simulator to ams from spectre
 
 ![image](https://user-images.githubusercontent.com/110079648/217047144-1bdea6f3-6e8a-4416-97f5-3c8437375f42.png)
+
+![image](https://user-images.githubusercontent.com/110079648/217049276-11299f55-e257-4d55-b2c1-a517b670b9e8.png)
+
+![image](https://user-images.githubusercontent.com/110079648/217049589-f05b6fe5-43aa-4fb7-98d7-7ee81010fcbe.png)
+
 
 
 ## Circuit
