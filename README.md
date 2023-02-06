@@ -36,13 +36,27 @@ to simulate launch ADE-L and chage simulator to ams from spectre
 
 
 
-## Circuit
+## Circuit 1 bit DAC
 
 ![image](https://user-images.githubusercontent.com/110079648/217048054-f2a88a23-05a2-4873-bdb1-9d0fda6e9fbd.png)
 
 Simulation
 
 ![Screenshot from 2023-02-06 18-32-43](https://user-images.githubusercontent.com/110079648/217050109-f2e4390b-ee6c-49be-b992-bf2eb81c48c3.png)
+
+
+## Circuit 2 bit DAC
+
+![Screenshot from 2023-02-06 23-58-22](https://user-images.githubusercontent.com/110079648/217055276-457ddb2f-9ebd-4837-a794-351125df7535.png)
+
+Simulation
+
+![Screenshot from 2023-02-06 23-58-15](https://user-images.githubusercontent.com/110079648/217055371-537fb5f0-6a21-4191-bff6-afda59311cb5.png)
+
+
+
+
+
 
 
 
