@@ -30,7 +30,7 @@ to simulate launch ADE-L and chage simulator to ams from spectre
 
 ![image](https://user-images.githubusercontent.com/110079648/217047144-1bdea6f3-6e8a-4416-97f5-3c8437375f42.png)
 
-![image](https://user-images.githubusercontent.com/110079648/217049276-11299f55-e257-4d55-b2c1-a517b670b9e8.png)
+#ERROR
 
 ![image](https://user-images.githubusercontent.com/110079648/217049589-f05b6fe5-43aa-4fb7-98d7-7ee81010fcbe.png)
 
@@ -42,7 +42,7 @@ to simulate launch ADE-L and chage simulator to ams from spectre
 
 Simulation
 
-/home/gopalakrishnareddy/Pictures/Screenshot from 2023-02-06 18-32-43.png
+![Screenshot from 2023-02-06 18-32-43](https://user-images.githubusercontent.com/110079648/217050109-f2e4390b-ee6c-49be-b992-bf2eb81c48c3.png)
 
 
 
