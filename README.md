@@ -11,16 +11,59 @@ Digital-to-Analog-Converter (DAC) systems are ubiquitous. They are needed to int
 
 This project is part of the **Mixed Signal design of ASIC's Course in IIIT Bengaluru Masters program** taught by VLSI System Design Founder, **Professor Kunal Gosh**. 
 
+## Table of Contents
+- [1. Operating principle](#1-Operating-principle)
+- [2. Potentiometric DAC Architecture Design](#2-potentiometric-dac-architecture-design)
+- [3. Specification List](#3-specification-list)
+- [4. EDA Tools Used](#4-eda-tools-used)
+- [5. Pre-layout and Simulations](#5-pre-layout-and-simulations)
+  * [A. Switch](#a-switch)
+  * [B. 2-Bit DAC subcircuit](#b-2-bit-dac-subcircuit)
+  * [C. 3-Bit DAC subcircuit](#c-3-bit-dac-subcircuit)
+  * [D. 4-Bit DAC subcircuit](#d-4-bit-dac-subcircuit)
+  * [E. 5-Bit DAC subcircuit](#e-5-bit-dac-subcircuit)
+  * [F. 6-Bit DAC subcircuit](#f-6-bit-dac-subcircuit)
+  * [G. 7-Bit DAC subcircuit](#g-7-bit-dac-subcircuit)
+  * [H. 8-Bit DAC subcircuit](#h-8-bit-dac-subcircuit)
+  * [I. 9-Bit DAC subcircuit](#i-9-bit-dac-subcircuit)
+  * [J. 10-Bit-DAC](#j-10-bit-dac)
+  * [Vout v/s Digital Code Graph for 10-Bit DAC](https://github.com/xzlashutosh/avsddac_3v3#vout-vs-digital-code-graph-for-10-bit-dac)
+  * [INL(LSB) v/s Digital Code Graph for 10-Bit DAC](https://github.com/xzlashutosh/avsddac_3v3#inllsb-vs-digital-code-graph-for-10-bit-dac)
+  * [DNL(LSB) v/s Digital Code Graph for 10-Bit DAC](https://github.com/xzlashutosh/avsddac_3v3#dnllsb-vs-digital-code-graph-for-10-bit-dac)
+- [6. Layout and Simulations](#6-layout-and-simulations)
+  * [A. Switch Layout](#a-switch-layout)
+  * [B. Resistor Layout](#b-resistor-layout)
+  * [C. Capacitor Layout](#c-capacitor-layout)
+    + [Modification done in osu180nm to make use of a capacitor as a device -](#modification-done-in-osu180nm-to-make-use-of-a-capacitor-as-a-device--)
+    + [Limitation of osu180 PDK -](#limitation-of-osu180-pdk--)
+  * [D. 2-Bit DAC Subcircuit Layout](#d-2-bit-dac-subcircuit-layout)
+  * [E. 3-Bit DAC Subcircuit Layout](#e-3-bit-dac-subcircuit-layout)
+  * [F. 4-Bit DAC Subcircuit Layout](#f-4-bit-dac-subcircuit-layout)
+  * [G. 5-Bit DAC Subcircuit Layout](#g-5-bit-dac-subcircuit-layout)
+  * [H. 6-Bit DAC Subcircuit Layout](#h-6-bit-dac-subcircuit-layout)
+  * [I. 7-Bit DAC Subcircuit Layout](#i-7-bit-dac-subcircuit-layout)
+  * [J. 8-Bit DAC Subcircuit Layout](#j-8-bit-dac-subcircuit-layout)
+  * [K. 9-Bit DAC Subcircuit Layout](#k-9-bit-dac-subcircuit-layout)
+  * [L. 10-Bit-DAC Layout](#l-10-bit-dac-layout)
+  * [Vout v/s Digital Code Graph for 10-Bit DAC](#vout-v-s-digital-code-graph-for-10-bit-dac-1)
+  * [INL(LSB) v/s Digital Code Graph for 10-Bit DAC](#inl-lsb--v-s-digital-code-graph-for-10-bit-dac-1)
+  * [DNL(LSB) v/s Digital Code Graph for 10-Bit DAC](#dnl-lsb--v-s-digital-code-graph-for-10-bit-dac-1)
+- [7. Instructions to get started with the design](#7-instructions-to-get-started-with-the-design)
+  * [For Pre-Layout Simulation -](#for-pre-layout-simulation--)
+  * [For Post-Layout Simulation -](#for-post-layout-simulation--)
+- [8. Author](#8-author)
+- [9. Acknowledgments](#9-acknowledgments)
+- [10. Contact Information -](#10-contact-information--)
 
-# Theory
-### Operating principle
+
+## 1.Operating principle
 ![DAC principle](https://user-images.githubusercontent.com/6376127/192501680-db959d55-320e-46c6-97cc-4cb83330bd93.jpeg)
 
 The operating principle of a DAC shown in Fig. 1 is to convert a digital input code to an analog output signal. The input code open or close switches such that the correct output signal is created from a positive voltage reference or source typically called VREF. The negative reference can be ground or a negative voltage reference. 
 
 The smallest signal increments, the stepsize also called delta's or [1 Least Significant Bit (LSB)](https://wiki.analog.com/university/courses/tutorials/cmos-dac-chapter) can be uniform (linear DAC) or logarithmic (log DAC) but should always be [monotonic](https://en.wikipedia.org/wiki/Monotonic_function). 
 
-### Characteristics
+## Characteristics
 To analyze and compare DACs often four DC errors (static error characteristics)  ([Chapter 2, page 2.15 from the Data Conversion Handbook](https://www.analog.com/en/education/education-library/data-conversion-handbook.html)) are computed using the sampled and ideal transfer function:
 
 - **Offset and Gain error.**
@@ -47,7 +90,7 @@ How much is the difference between the sampled step *height* at t=x and the idea
 
 In SPICE simulation the transfer function can be aqcuired using a transient analysis, plotting time on the x-axis and DAC output on the y-axis. The DAC input or binary code start at all zero and and is incremented by 1 bit at fixed periods using a PWL or Pulse signal generator. The simulation time should be long enough to reach a steady state (DC) such that we can sample it. With Xschem, the INL and DNL metrics can be directly calculated and visualised from the raw simulated data, saving an export step to data processors and graphing tools such as Excel or Matlab. 
 
-### Potentiometric DAC Architecture Design
+## Potentiometric DAC Architecture Design
 
 The basic idea is to divide the voltage into N different voltage values in the range of Vref+ and Vref- for an N-Bit DAC. The design used here to achieve this is the simple resistor string DAC which consists of resistors in series. These resistors are then connected to various switches in such a fashion that it routes the exact voltage to the output.
 
@@ -65,7 +108,7 @@ Given below is the block diagram of the DAC -
   <img width="7000" height="700" src="https://github.com/xzlashutosh/avsddac_3v3/blob/master/subcircuits/overview%20of%20design.png">
 </p>
 
-# IP Design Specs
+## IP Design Specs
 ![IP block](https://user-images.githubusercontent.com/6376127/192647277-81dd892c-05ba-43ed-8eb2-6ade996fda49.png)
 
 | Parameter| Description| Min | Typ | Max | Unit | Condition |
