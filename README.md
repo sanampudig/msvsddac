@@ -16,7 +16,7 @@ This project is part of the **Mixed Signal design of ASIC's Course in IIIT Benga
 ### Operating principle
 ![DAC principle](https://user-images.githubusercontent.com/6376127/192501680-db959d55-320e-46c6-97cc-4cb83330bd93.jpeg)
 
-The operating principle of a DAC shown in Fig. 1 is to convert a digital input code to an analog output signal. The input code open or close switches such that the correct output signal is created from a positive voltage reference or source typically called VREF. The negative reference can be ground or a negative voltage reference. The output signal can be a voltage or a current. The simplest DAC, a 1-bit DAC is an analog switch and switches between VREF and ground (or negative VREF). 
+The operating principle of a DAC shown in Fig. 1 is to convert a digital input code to an analog output signal. The input code open or close switches such that the correct output signal is created from a positive voltage reference or source typically called VREF. The negative reference can be ground or a negative voltage reference. 
 
 The smallest signal increments, the stepsize also called delta's or [1 Least Significant Bit (LSB)](https://wiki.analog.com/university/courses/tutorials/cmos-dac-chapter) can be uniform (linear DAC) or logarithmic (log DAC) but should always be [monotonic](https://en.wikipedia.org/wiki/Monotonic_function). 
 
@@ -47,10 +47,6 @@ How much is the difference between the sampled step *height* at t=x and the idea
 
 In SPICE simulation the transfer function can be aqcuired using a transient analysis, plotting time on the x-axis and DAC output on the y-axis. The DAC input or binary code start at all zero and and is incremented by 1 bit at fixed periods using a PWL or Pulse signal generator. The simulation time should be long enough to reach a steady state (DC) such that we can sample it. With Xschem, the INL and DNL metrics can be directly calculated and visualised from the raw simulated data, saving an export step to data processors and graphing tools such as Excel or Matlab. 
 
-### Architecture
-![Complete DAC](https://user-images.githubusercontent.com/6376127/192506303-bdb3a85e-4050-44f3-8655-eef9c75d7447.jpeg)
-
-A complete DAC as show in Fig. 2 typically involves a output buffer stage using an integrated opamp, a precise voltage reference and I/O multiplexer using SPI or I2C with input buffer. Without the [sample&hold (SH) output buffer stage](https://www.analog.com/media/cn/training-seminars/tutorials/mt-090.pdf) the DAC is classified as a potentiometric DAC or *digital potentiometer*. Fabricated high precision DACs are [laser trimmed](https://en.wikipedia.org/wiki/Laser_trimming) and have [ESD I/O pins](https://www.ti.com/lit/ds/symlink/dac161s055.pdf) to protect the pins from unwanted ESD events.
 ### Potentiometric DAC Architecture Design
 
 The basic idea is to divide the voltage into N different voltage values in the range of Vref+ and Vref- for an N-Bit DAC. The design used here to achieve this is the simple resistor string DAC which consists of resistors in series. These resistors are then connected to various switches in such a fashion that it routes the exact voltage to the output.
