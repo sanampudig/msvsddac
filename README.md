@@ -29,8 +29,13 @@ This project is part of the **Mixed Signal design of ASIC's Course in IIIT Benga
   * [I. 9-Bit DAC subcircuit](#i-9-bit-dac-subcircuit)
   * [J. 10-Bit-DAC](#j-10-bit-dac)
   * [Vout v/s Digital Code Graph for 10-Bit DAC](#Vout-vs-Digital-Code-Graph-for-10-Bit-DAC)
-  * [DNL(LSB) v/s Digital Code Graph for 10-Bit DAC](#DNL(LSB)-vs-Digital-Code-Graph-for-10-Bit-DAC)
-  * [INL(LSB) v/s Digital Code Graph for 10-Bit DAC](#INL(LSB)-vs-Digital-Code-Graph-for-10-Bit-DAC)
+  * [DNL(LSB) v/s Digital Code Graph for 10-Bit DAC](#DNL-LSB-vs-Digital-Code-Graph-for-10-Bit-DAC)
+  * [INL(LSB) v/s Digital Code Graph for 10-Bit DAC](#INL-LSB-vs-Digital-Code-Graph-for-10-Bit-DAC)
+- [7. Post-layout and Simulations](#6-post-layout-and-simulations)
+- [8. Contributors ](#8-Contributors)
+- [9. Acknowledgments](#9-Acknowledgments)
+- [10. Contact Information](#10-Contact-Information)
+- [11. References](#11-References)
 
 
 
@@ -198,29 +203,31 @@ Given below is the block diagram of the DAC -
 
 ### Vout vs Digital Code Graph for 10-Bit DAC
 
-### DNL(LSB) vs Digital Code Graph for 10-Bit DAC
+### DNL-LSB vs Digital Code Graph for 10-Bit DAC
 
 
-### INL(LSB) vs Digital Code Graph for 10-Bit DAC
+### INL-LSB vs Digital Code Graph for 10-Bit DAC
 
-## 11. Contributors 
+## 7. Post-layout and Simulations
+
+## 8. Contributors 
 
 - **Sanampudi Gopala Krishna Reddy** 
 - **Kunal Ghosh** 
 
 
 
-## 12. Acknowledgments
+## 9. Acknowledgments
 
 
 - Kunal Ghosh, Director, VSD Corp. Pvt. Ltd.
 - Steven Bos
-## 13. Contact Information
+## 10. Contact Information
 
 - Sanampudi Gopala Krishna Reddy, Postgraduate Student, International Institute of Information Technology, Bangalore  svgkr7@gmail.com
 - Kunal Ghosh, Director, VSD Corp. Pvt. Ltd. kunalghosh@gmail.com
 
-## 14. References
+## 11. References
 - [kunalg123/avsddac_workshop](https://github.com/kunalg123/avsddac_workshop#readme)
 
 
