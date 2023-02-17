@@ -12,11 +12,12 @@ Digital-to-Analog-Converter (DAC) systems are ubiquitous. They are needed to int
 This project is part of the **Mixed Signal design of ASIC's Course in IIIT Bengaluru Masters program** taught by VLSI System Design Founder, **Professor Kunal Gosh**. 
 
 ## Table of Contents
-- [1. Operating principle](#1-Operating-principle)
+- [1. Introduction to Potentiometric Digital to Analog Converter](#1-Introduction-to-Potentiometric-Digital-to-Analog-Converter)
 - [2. Potentiometric DAC Architecture Design](#2-potentiometric-dac-architecture-design)
 - [3. Specification List](#3-specification-list)
 - [4. EDA Tools Used](#4-eda-tools-used)
-- [5. Pre-layout and Simulations](#5-pre-layout-and-simulations)
+## 6. Pre-layout and Simulations
+- [6. Pre-layout and Simulations](#6-pre-layout-and-simulations)
   * [A. Switch](#a-switch)
   * [B. 2-Bit DAC subcircuit](#b-2-bit-dac-subcircuit)
   * [C. 3-Bit DAC subcircuit](#c-3-bit-dac-subcircuit)
@@ -56,14 +57,14 @@ This project is part of the **Mixed Signal design of ASIC's Course in IIIT Benga
 - [10. Contact Information -](#10-contact-information--)
 
 
-## 1.Operating principle
+## 2. Operating principle
 ![DAC principle](https://user-images.githubusercontent.com/6376127/192501680-db959d55-320e-46c6-97cc-4cb83330bd93.jpeg)
 
 The operating principle of a DAC shown in Fig. 1 is to convert a digital input code to an analog output signal. The input code open or close switches such that the correct output signal is created from a positive voltage reference or source typically called VREF. The negative reference can be ground or a negative voltage reference. 
 
 The smallest signal increments, the stepsize also called delta's or [1 Least Significant Bit (LSB)](https://wiki.analog.com/university/courses/tutorials/cmos-dac-chapter) can be uniform (linear DAC) or logarithmic (log DAC) but should always be [monotonic](https://en.wikipedia.org/wiki/Monotonic_function). 
 
-## Characteristics
+## 3. Characteristics
 To analyze and compare DACs often four DC errors (static error characteristics)  ([Chapter 2, page 2.15 from the Data Conversion Handbook](https://www.analog.com/en/education/education-library/data-conversion-handbook.html)) are computed using the sampled and ideal transfer function:
 
 - **Offset and Gain error.**
@@ -90,7 +91,7 @@ How much is the difference between the sampled step *height* at t=x and the idea
 
 In SPICE simulation the transfer function can be aqcuired using a transient analysis, plotting time on the x-axis and DAC output on the y-axis. The DAC input or binary code start at all zero and and is incremented by 1 bit at fixed periods using a PWL or Pulse signal generator. The simulation time should be long enough to reach a steady state (DC) such that we can sample it. With Xschem, the INL and DNL metrics can be directly calculated and visualised from the raw simulated data, saving an export step to data processors and graphing tools such as Excel or Matlab. 
 
-## Potentiometric DAC Architecture Design
+## 4. Potentiometric DAC Architecture Design
 
 The basic idea is to divide the voltage into N different voltage values in the range of Vref+ and Vref- for an N-Bit DAC. The design used here to achieve this is the simple resistor string DAC which consists of resistors in series. These resistors are then connected to various switches in such a fashion that it routes the exact voltage to the output.
 
@@ -108,7 +109,7 @@ Given below is the block diagram of the DAC -
   <img width="7000" height="700" src="https://github.com/xzlashutosh/avsddac_3v3/blob/master/subcircuits/overview%20of%20design.png">
 </p>
 
-## IP Design Specs
+## 5. IP Design Specs
 ![IP block](https://user-images.githubusercontent.com/6376127/192647277-81dd892c-05ba-43ed-8eb2-6ade996fda49.png)
 
 | Parameter| Description| Min | Typ | Max | Unit | Condition |
@@ -131,7 +132,7 @@ Given below is the block diagram of the DAC -
 |Offset Error| xE-07 V | xE-07 V |
 
 
-## 5. Pre-layout and Simulations
+## 6. Pre-layout and Simulations
 
 ### A. 1-Bit DAC subcircuit
 
