@@ -13,10 +13,10 @@ This project is part of the **Mixed Signal design of ASIC's Course in IIIT Benga
 
 ## Table of Contents
 - [1. Introduction to Potentiometric Digital to Analog Converter](#1-Introduction-to-Potentiometric-Digital-to-Analog-Converter)
-- [2. Potentiometric DAC Architecture Design](#2-potentiometric-dac-architecture-design)
-- [3. Specification List](#3-specification-list)
-- [4. EDA Tools Used](#4-eda-tools-used)
-## 6. Pre-layout and Simulations
+- [2. Operating principle](#2-Operating-principle)
+- [3. Characteristics](#3-Characteristics)
+- [4. Potentiometric DAC Architecture Design](#4-Potentiometric-DAC-Architecture-Design)
+- [5. IP Design Specs](#5-IP-Design-Specs)
 - [6. Pre-layout and Simulations](#6-pre-layout-and-simulations)
   * [A. Switch](#a-switch)
   * [B. 2-Bit DAC subcircuit](#b-2-bit-dac-subcircuit)
@@ -28,7 +28,7 @@ This project is part of the **Mixed Signal design of ASIC's Course in IIIT Benga
   * [H. 8-Bit DAC subcircuit](#h-8-bit-dac-subcircuit)
   * [I. 9-Bit DAC subcircuit](#i-9-bit-dac-subcircuit)
   * [J. 10-Bit-DAC](#j-10-bit-dac)
-  * [Vout v/s Digital Code Graph for 10-Bit DAC](https://github.com/xzlashutosh/avsddac_3v3#vout-vs-digital-code-graph-for-10-bit-dac)
+  * [Vout v/s Digital Code Graph for 10-Bit DAC](#Vout-v/s-Digital-Code-Graph-for-10-Bit-DAC)
   * [INL(LSB) v/s Digital Code Graph for 10-Bit DAC](https://github.com/xzlashutosh/avsddac_3v3#inllsb-vs-digital-code-graph-for-10-bit-dac)
   * [DNL(LSB) v/s Digital Code Graph for 10-Bit DAC](https://github.com/xzlashutosh/avsddac_3v3#dnllsb-vs-digital-code-graph-for-10-bit-dac)
 - [6. Layout and Simulations](#6-layout-and-simulations)
