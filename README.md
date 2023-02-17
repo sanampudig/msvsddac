@@ -29,32 +29,9 @@ This project is part of the **Mixed Signal design of ASIC's Course in IIIT Benga
   * [I. 9-Bit DAC subcircuit](#i-9-bit-dac-subcircuit)
   * [J. 10-Bit-DAC](#j-10-bit-dac)
   * [Vout v/s Digital Code Graph for 10-Bit DAC](#Vout-vs-Digital-Code-Graph-for-10-Bit-DAC)
-  * [INL(LSB) v/s Digital Code Graph for 10-Bit DAC](https://github.com/xzlashutosh/avsddac_3v3#inllsb-vs-digital-code-graph-for-10-bit-dac)
-  * [DNL(LSB) v/s Digital Code Graph for 10-Bit DAC](https://github.com/xzlashutosh/avsddac_3v3#dnllsb-vs-digital-code-graph-for-10-bit-dac)
-- [6. Layout and Simulations](#6-layout-and-simulations)
-  * [A. Switch Layout](#a-switch-layout)
-  * [B. Resistor Layout](#b-resistor-layout)
-  * [C. Capacitor Layout](#c-capacitor-layout)
-    + [Modification done in osu180nm to make use of a capacitor as a device -](#modification-done-in-osu180nm-to-make-use-of-a-capacitor-as-a-device--)
-    + [Limitation of osu180 PDK -](#limitation-of-osu180-pdk--)
-  * [D. 2-Bit DAC Subcircuit Layout](#d-2-bit-dac-subcircuit-layout)
-  * [E. 3-Bit DAC Subcircuit Layout](#e-3-bit-dac-subcircuit-layout)
-  * [F. 4-Bit DAC Subcircuit Layout](#f-4-bit-dac-subcircuit-layout)
-  * [G. 5-Bit DAC Subcircuit Layout](#g-5-bit-dac-subcircuit-layout)
-  * [H. 6-Bit DAC Subcircuit Layout](#h-6-bit-dac-subcircuit-layout)
-  * [I. 7-Bit DAC Subcircuit Layout](#i-7-bit-dac-subcircuit-layout)
-  * [J. 8-Bit DAC Subcircuit Layout](#j-8-bit-dac-subcircuit-layout)
-  * [K. 9-Bit DAC Subcircuit Layout](#k-9-bit-dac-subcircuit-layout)
-  * [L. 10-Bit-DAC Layout](#l-10-bit-dac-layout)
-  * [Vout v/s Digital Code Graph for 10-Bit DAC](#vout-v-s-digital-code-graph-for-10-bit-dac-1)
-  * [INL(LSB) v/s Digital Code Graph for 10-Bit DAC](#inl-lsb--v-s-digital-code-graph-for-10-bit-dac-1)
-  * [DNL(LSB) v/s Digital Code Graph for 10-Bit DAC](#dnl-lsb--v-s-digital-code-graph-for-10-bit-dac-1)
-- [7. Instructions to get started with the design](#7-instructions-to-get-started-with-the-design)
-  * [For Pre-Layout Simulation -](#for-pre-layout-simulation--)
-  * [For Post-Layout Simulation -](#for-post-layout-simulation--)
-- [8. Author](#8-author)
-- [9. Acknowledgments](#9-acknowledgments)
-- [10. Contact Information -](#10-contact-information--)
+  * [DNL(LSB) v/s Digital Code Graph for 10-Bit DAC](#DNL(LSB)-vs-Digital-Code-Graph-for-10-Bit-DAC)
+  * [INL(LSB) v/s Digital Code Graph for 10-Bit DAC](#INL(LSB)-vs-Digital-Code-Graph-for-10-Bit-DAC)
+
 
 
 ## 2. Operating principle
@@ -221,10 +198,10 @@ Given below is the block diagram of the DAC -
 
 ### Vout vs Digital Code Graph for 10-Bit DAC
 
-### DNL(LSB) v/s Digital Code Graph for 10-Bit DAC
+### DNL(LSB) vs Digital Code Graph for 10-Bit DAC
 
 
-### INL(LSB) v/s Digital Code Graph for 10-Bit DAC
+### INL(LSB) vs Digital Code Graph for 10-Bit DAC
 
 ## 11. Contributors 
 
