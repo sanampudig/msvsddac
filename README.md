@@ -182,6 +182,26 @@ Given below is the block diagram of the DAC -
 
 ### INL(LSB) v/s Digital Code Graph for 10-Bit DAC
 
+## 11. Contributors 
+
+- **Sanampudi Gopala Krishna Reddy** 
+- **Kunal Ghosh** 
+
+
+
+## 12. Acknowledgments
+
+
+- Kunal Ghosh, Director, VSD Corp. Pvt. Ltd.
+- Steven Bos
+## 13. Contact Information
+
+- Sanampudi Gopala Krishna Reddy, Postgraduate Student, International Institute of Information Technology, Bangalore  svgkr7@gmail.com
+- Kunal Ghosh, Director, VSD Corp. Pvt. Ltd. kunalghosh@gmail.com
+
+## 14. References
+- [kunalg123/avsddac_workshop](https://github.com/kunalg123/avsddac_workshop#readme)
+
 
 
 
