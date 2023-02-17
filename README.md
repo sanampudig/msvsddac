@@ -31,7 +31,7 @@ This project is part of the **Mixed Signal design of ASIC's Course in IIIT Benga
   * [Vout v/s Digital Code Graph for 10-Bit DAC](#Vout-vs-Digital-Code-Graph-for-10-Bit-DAC)
   * [DNL(LSB) v/s Digital Code Graph for 10-Bit DAC](#DNL-LSB-vs-Digital-Code-Graph-for-10-Bit-DAC)
   * [INL(LSB) v/s Digital Code Graph for 10-Bit DAC](#INL-LSB-vs-Digital-Code-Graph-for-10-Bit-DAC)
-- [7. Post-layout and Simulations](#6-post-layout-and-simulations)
+- [7. Post-layout and Simulations](#7-post-layout-and-simulations)
 - [8. Contributors ](#8-Contributors)
 - [9. Acknowledgments](#9-Acknowledgments)
 - [10. Contact Information](#10-Contact-Information)
