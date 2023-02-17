@@ -3,11 +3,141 @@
 ################################
 
 ## 1. Introduction to Potentiometric Digital to Analog Converter
-This repository presents a 10-bit Potentiometric Digital to Analog Converter.
+The project aims to design a 10-bit Potentiometric Digital to Analog Converter using Cadence tools with scl 180nm technology node.
 
-The target is to design a 10-bit potentiometric DAC with 3.3v analog voltage and 1 off-chip external reference using the osu180nm technology node. Here are the specifications from [VSD Corporation Pvt. Ltd.](https://github.com/xzlashutosh/avsddac_3v3/blob/master/potentiometricDAC_IP.pdf)
+Here are the specifications from [SPECS DOCUMENT](https://github.com/xzlashutosh/avsddac_3v3/blob/master/potentiometricDAC_IP.pdf)
 
-A DAC is a building block required to convert digital data into analog.
+Digital-to-Analog-Converter (DAC) systems are ubiquitous. They are needed to interface digital or discrete signals -- typically binary such as VDD and GND, to the physical, analog world that uses a continuous range of signals. DACs and their counterpart Analog-to-Digital-Converter (ADC)s are thus found in most electrical systems. Practical applications are found in process control, programmable voltage sources, communication systems, data acquistions systems and many more. Commercial DACs range from 4-bit DAC to ultra high precision 24-bit DAC (and higher) to fast 22M Samples/Sec and 16-bit precise DAC. In this repository I present the building blocks of a 10-bit DAC with requirements that are typical for integration in modern Systems-on-a-Chip (SoC). Various analog designs can found such as an inverter, up/down shifters, analog switch and various n-bit DAC's. They are presented including their Virtuoso simulation behavior using 130nm scl 180nm technology node.
+
+This project is part of the *Mixed Signal design of ASIC's Course in IIIT Bengaluru Masters program* taught by VLSI System Design Founder, Professor *Kunal Gosh*. 
+
+
+# Theory
+### Operating principle
+![DAC principle](https://user-images.githubusercontent.com/6376127/192501680-db959d55-320e-46c6-97cc-4cb83330bd93.jpeg)
+
+The operating principle of a DAC shown in Fig. 1 is to convert a digital input code to an analog output signal. The input code open or close switches such that the correct output signal is created from a positive voltage reference or source typically called VREF. The negative reference can be ground or a negative voltage reference. The output signal can be a voltage or a current. The simplest DAC, a 1-bit DAC is an analog switch and switches between VREF and ground (or negative VREF). 
+
+The smallest signal increments, the stepsize also called delta's or [1 Least Significant Bit (LSB)](https://wiki.analog.com/university/courses/tutorials/cmos-dac-chapter) can be uniform (linear DAC) or logarithmic (log DAC) but should always be [monotonic](https://en.wikipedia.org/wiki/Monotonic_function). 
+
+### Characteristics
+To analyze and compare DACs often four DC errors (static error characteristics)  ([Chapter 2, page 2.15 from the Data Conversion Handbook](https://www.analog.com/en/education/education-library/data-conversion-handbook.html)) are computed using the sampled and ideal transfer function:
+
+- **Offset and Gain error.**
+
+![Offset and Gain characteristic](https://user-images.githubusercontent.com/6376127/192576544-6de542f6-be5a-40da-b5ad-0e7f7ac6de77.png)
+
+Image credits: [Data Conversion Handbook](https://www.analog.com/en/education/education-library/data-conversion-handbook.html)
+
+The offset or shift error can be seen when the transition from DAC output value to the next one is consistently off by a certain value. To calculate the offset error we take the sampled DAC output at t=0 and take the difference to the ideal DAC output at t=0. The gain or slope error can be seen when the DAC output has its offset error removed and is compared to the ideal slope. To calculate the gain error: sampled DAC output at t=n - sampled DAC output at t=0 - (2<sup>^n</sup> - 1 LSB). 
+
+- **Differential non-linearity (DNL).**
+![DNL characteristic](https://user-images.githubusercontent.com/6376127/192559984-543719f2-49e3-4ed1-9ed9-41088e65bb19.png)
+
+Image credits: [Original source All About Circuits, adapted from the Data Conversion handbook](https://www.allaboutcircuits.com/technical-articles/understanding-dnl-and-inl-specifications-of-a-digital-to-analog-converter/)
+
+How much is the difference between the sampled step *height* at t=x+1 and the previous sampled step *height* at t=x compared to the ideal step height of 1 LSB? The difference or deviation per input code is measured in LSB units. 1 LSB = FS/2<sup>^n</sup>. For example, the DAC output at input code `010` has a height of 3.5 LSB while the DAC output at `001` is 1 LSB. The difference is 2.5 LSB. Compared to the ideal step size this is an increase (error) of +1.5 LSB. The DNL can be plotted over the entire input code range. If the DNL has only positive terms over the entire input range, the DAC is considered to be monotonic over the full scale (FS) output range, a desired property.
+
+- **Integral non-linearity (INL).**
+![INL characteristic](https://user-images.githubusercontent.com/6376127/192577443-1349215a-b577-4949-98f0-1a0d3819ead6.png)
+
+Image credits: [Data Conversion Handbook](https://www.analog.com/en/education/education-library/data-conversion-handbook.html)
+
+How much is the difference between the sampled step *height* at t=x and the ideal step *height* at t=x? The difference or deviation per input code is measured in LSB units. For example, in the DNL image at code `011` we eyeball that the sample is 4.5 LSB, while the previous sample was 3.5 LSB which is a perfect 1 LSB increase and thus a DNL error of 0. However, when we compute the INL we see that the ideal sample height is not 4.5 LSB but 3 LSB, meaning a INL error of + 1.5 LSB. The INL can be plotted over the entire input code range. For both the INL and the DNL the compensated sample output should be used which can be calculated as sample output - offset error - (n/(2<sup>^n</sup>-1 LSB)) * gain error ([see example from UiO IN5220 course material](https://www.uio.no/studier/emner/matnat/ifi/IN5220/v21/timeplan/in5220_v21_ex03_sol.pdf))
+
+In SPICE simulation the transfer function can be aqcuired using a transient analysis, plotting time on the x-axis and DAC output on the y-axis. The DAC input or binary code start at all zero and and is incremented by 1 bit at fixed periods using a PWL or Pulse signal generator. The simulation time should be long enough to reach a steady state (DC) such that we can sample it. With Xschem, the INL and DNL metrics can be directly calculated and visualised from the raw simulated data, saving an export step to data processors and graphing tools such as Excel or Matlab. 
+
+### Architecture
+![Complete DAC](https://user-images.githubusercontent.com/6376127/192506303-bdb3a85e-4050-44f3-8655-eef9c75d7447.jpeg)
+
+A complete DAC as show in Fig. 2 typically involves a output buffer stage using an integrated opamp, a precise voltage reference and I/O multiplexer using SPI or I2C with input buffer. Without the [sample&hold (SH) output buffer stage](https://www.analog.com/media/cn/training-seminars/tutorials/mt-090.pdf) the DAC is classified as a potentiometric DAC or *digital potentiometer*. Fabricated high precision DACs are [laser trimmed](https://en.wikipedia.org/wiki/Laser_trimming) and have [ESD I/O pins](https://www.ti.com/lit/ds/symlink/dac161s055.pdf) to protect the pins from unwanted ESD events.
+
+### Design
+Several DAC core designs have been published, each with trade-offs in terms of silicon area, speed, precision and other metrics. The presented overview is by no means comprehensive and only discusses resistive DAC (as opposed to [capacitive DAC](https://www.uio.no/studier/emner/matnat/ifi/IN5220/v21/timeplan/in5220_v21_ex04_sol.pdf)) designs based on voltage reference sources and with voltage output. A good comprehensive and practical reference is the [Data Conversion Handbook](https://www.analog.com/en/education/education-library/data-conversion-handbook.html) (2005) edited by Walt Kester from Analog Devices.
+
+- Resistor string ([thermometer/fully decoded](https://www.researchgate.net/publication/266008269_MT-014_TUTORIAL_Basic_DAC_Architectures_I_String_DACs_and_Thermometer_Fully_Decoded_DACs)) design. This design requires 2<sup>^n</sup> resistors and thus requires a large area. For large n (>10 bit) it becomes hard to correctly match the resistors. The resistors have a process dependent minimum size such that process variance will not effect it much (the matching problem). Typically a decoder block is added to switch the 2<sup>^n</sup> transistors with just n inputs. A variant to this decoder design is the hierarchical design used in this work where the decoder is integrated in lower level DAC blocks (left most design). It offers good DNL.
+
+![Resistor string architectures](https://user-images.githubusercontent.com/6376127/192521415-2a7db1e6-20f0-49a8-9b1a-962bccb07373.png)
+Image credits: [UiO IN5220 course material](https://www.uio.no/studier/emner/matnat/ifi/IN5220/v21/timeplan/in5220_v21_06_dac.pdf) 
+
+- Binary weighted (encoded) design. This design reduces the amount resistors from 2<sup>^n</sup> to just n. The trade-off is that each an increase in variation of resistors from just 1 in resistor string to n in binary weighted designs. Binary weighted designs also offer the worse DNL characteristic. 
+![Binary Weighted architecture](https://user-images.githubusercontent.com/6376127/192524723-82377320-a10c-4dd4-b0fa-39abf8acf887.png)
+Image credits: [UiO IN5220 course material](https://www.uio.no/studier/emner/matnat/ifi/IN5220/v21/timeplan/in5220_v21_06_dac.pdf) 
+
+- R-2R (encoded) design. This design reduces the amount of resistors from 2<sup>^n</sup> to just 2n and decreases the variation in resistors from n to 2 compared to binary weighted designs.
+![R-2R architecture](https://user-images.githubusercontent.com/6376127/192525477-65bf20dd-fb80-45ba-8922-417671c30629.png)
+Image credits: [UiO IN5220 course material](https://www.uio.no/studier/emner/matnat/ifi/IN5220/v21/timeplan/in5220_v21_06_dac.pdf) 
+
+- Segmented (hybrid) design. In a segmented or hybrid design two or more DACs are combined to mitigate some of the issues such as area or resistor variance. Segmented DAC designs typically have one DAC architecture handling the least significant bits (LSB) and another handling the rest (the most significant bits, MSB). Segmented DACs allow for very high speed designs and offer good trade-offs between area, power and performance. 
+![Segmented architecture](https://user-images.githubusercontent.com/6376127/192537404-765f921f-ac82-4c44-ab7e-bd05697d52e7.png)
+Image credits: [Walt Kester, introduction to segmented DAC](https://www.researchgate.net/publication/238727450_Basic_DAC_Architectures_III_Segmented_DACs)
+
+- PWM DAC https://www.edn.com/phased-array-pwm-dac/
+
+# Related work
+- 1st generation DAC (2020) by Ashutosh Sharma. [Blog](https://www.vlsisystemdesign.com/10bit-dac-osu180nm/) [Repository](https://github.com/xzlashutosh/avsddac_3v3)
+- 2nd generation DAC (2021) by Shalini Kanna, Harshitha Basavaraju, Skandha Deepsita, Kunal Ghosh. [Repository](https://github.com/vsdip/avsddac_3v3_sky130_v1)
+- 3rd generation DAC (2022) by Steven Bos. This work
+
+# Main contributions
+- Comparison of SPICE simulation engines (ngspice, xyce serial, xyce parallel, hspice) 
+- Schematic redesign of analog switch with improved transmission gate, up/down shifter, 5V transistor type, transistor L/W sizing
+- Schematic redesign of n-bit DACs with uniform resistor ladder and transistor gate capacitance
+- Layout redesign of analog switch 
+- Layout redesign of n-bit DACs
+- Static and dynamic power analysis
+- Improved INL and DNL characteristics
+- Integration of design in Efabless caravan (analog harness)
+- Documentation
+- New features: 
+  - Enable/disable component switch to save power when unused
+  - Triggerable output stage to create pulse trains
+  - Bipolar DAC enabling both positive and negative voltage steps 
+    
+# Open source tools used and installation
+- XSCHEM for schematic drawing and graphing. [Website](http://repo.hu/projects/xschem/xschem_man/xschem_man.html). [Repository](https://github.com/StefanSchippers/xschem)
+- XYCE serial/parallel for simulation. [Website](https://xyce.sandia.gov/). [Repository](https://github.com/Xyce/Xyce) 
+- MAGIC for layout. [Website](http://opencircuitdesign.com/magic/). [Repository](https://github.com/RTimothyEdwards/magic))
+- KLAYOUT for GDS viewing. [Website](https://www.klayout.de/). [Repository](https://github.com/KLayout/klayout)
+- OPENPDK for patched open PDK [Website](http://opencircuitdesign.com/open_pdks/index.html). [Repository](https://github.com/RTimothyEdwards/open_pdks)
+- OPENLANE w/ OPENROAD for toolchain HDL to GDSII. [Website](https://openlane.readthedocs.io/en/latest/). [Repository](https://github.com/The-OpenROAD-Project/OpenLane) 
+- EFABLESS ANALOG CARAVEL harness for on-chip debugging and control. [Website](https://github.com/efabless/caravel_user_project_analog/blob/main/docs/source/index.rst). [Repository](https://github.com/efabless/caravel_user_project_analog )  
+
+Please refer to the websites or github repo's to install the tools. The installation process gets updates regularly so the website or repo are the best source of information. Most tools are installed on linux platforms. With Windows Subsystem for Linux (WSL) we can run Linux with Windows and retain full Windows Explorer (file managmenent) functionality and high CPU/GPU performance compared to a virtual machine. Docker containers such as [FOSS-ASIC-TOOLS](https://github.com/efabless/foss-asic-tools) offer to install all the above tools with just one installation which is convenient for most users. In my case I build each tool individually from source code as I needed newer versions that were not available yet. 
+
+# IP Design Specs
+![IP block](https://user-images.githubusercontent.com/6376127/192647277-81dd892c-05ba-43ed-8eb2-6ade996fda49.png)
+
+| Parameter| Description| Min | Typ | Max | Unit | Condition |
+| :---:  | :-: | :-: | :-: | :---:  | :-: | :-: |
+|RL|Load resistance| 50|||Mohm|T=-40 to 85C|
+|CL|Load capacitance|||1|pF|T=-40 to 85C|
+|VDDA|Analog supply| |3.3||V|T=-40 to 85C|
+|VDD|Digital supply voltage||1.8||V|T=-40 to 85C|
+|VREFH|Reference voltage high|||3.3|V|T=-40 to 85C|
+|VREFL|Reference voltage low|-3.3|||V|T=-40 to 85C|
+|RES|Resolution| |10||bit|T=27C|
+|VFS|Full Scale Voltage|-3.3| |3.291627| V |T=27C|
+|URATE|Update rate||1 || MSamples/Sec |T=27C|
+
+| Parameter| Pre-layout | Post-Layout |
+| :---:  | :-: | :-: |
+|DNL| -0.x LSB to 0.x LSB | -0.x LSB to 0.x LSB |
+|INL| -0.x LSB to 0.x LSB| -0.x LSB to 0.x LSB |
+|Gain Error| x | x |
+|Offset Error| xE-07 V | xE-07 V |
+
+# Comparison of SPICE simulators
+
+Work in progress. 
+
+- NGSPICE SERIAL (open source)
+- NGSPICE PARALLEL (open source)
+- XYCE SERIAL (open source)
+- XYCE PARALLEL (open source)
+- HSPICE SERIAL (commercial)
+- HSPICE PARALLEL (commercial) NOT TESTED
+
 
 ## Table of Contents
 - [1. Introduction to Potentiometric Digital to Analog Converter](#1-introduction-to-potentiometric-digital-to-analog-converter)
