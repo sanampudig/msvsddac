@@ -1,6 +1,6 @@
 
 # Mixed Signal 10-Bit Potentiometric Digital to Analog Converter Based on SCL180nm Process Node {msvsddac}
-################################
+
 
 ## 1. Introduction to Potentiometric Digital to Analog Converter
 The project aims to design a 10-bit Potentiometric Digital to Analog Converter using Cadence tools with scl 180nm technology node.
@@ -9,7 +9,7 @@ Here are the specifications from [SPECS DOCUMENT](https://github.com/xzlashutosh
 
 Digital-to-Analog-Converter (DAC) systems are ubiquitous. They are needed to interface digital or discrete signals -- typically binary such as VDD and GND, to the physical, analog world that uses a continuous range of signals. DACs and their counterpart Analog-to-Digital-Converter (ADC)s are thus found in most electrical systems. Practical applications are found in process control, programmable voltage sources, communication systems, data acquistions systems and many more. Commercial DACs range from 4-bit DAC to ultra high precision 24-bit DAC (and higher) to fast 22M Samples/Sec and 16-bit precise DAC. In this repository I present the building blocks of a 10-bit DAC with requirements that are typical for integration in modern Systems-on-a-Chip (SoC). Various analog designs can found such as an inverter, up/down shifters, analog switch and various n-bit DAC's. They are presented including their Virtuoso simulation behavior using 130nm scl 180nm technology node.
 
-This project is part of the *Mixed Signal design of ASIC's Course in IIIT Bengaluru Masters program* taught by VLSI System Design Founder, Professor *Kunal Gosh*. 
+This project is part of the **Mixed Signal design of ASIC's Course in IIIT Bengaluru Masters program** taught by VLSI System Design Founder, **Professor Kunal Gosh**. 
 
 
 # Theory
