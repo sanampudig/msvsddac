@@ -18,7 +18,7 @@ This project is part of the **Mixed Signal design of ASIC's Course in IIIT Benga
 - [4. Potentiometric DAC Architecture Design](#4-Potentiometric-DAC-Architecture-Design)
 - [5. IP Design Specs](#5-IP-Design-Specs)
 - [6. Pre-layout and Simulations](#6-pre-layout-and-simulations)
-  * [A. Switch](#a-switch)
+  * [A. 1-Bit DAC subcircuit](#a-1-bit-dac-subcircuit)
   * [B. 2-Bit DAC subcircuit](#b-2-bit-dac-subcircuit)
   * [C. 3-Bit DAC subcircuit](#c-3-bit-dac-subcircuit)
   * [D. 4-Bit DAC subcircuit](#d-4-bit-dac-subcircuit)
@@ -28,7 +28,7 @@ This project is part of the **Mixed Signal design of ASIC's Course in IIIT Benga
   * [H. 8-Bit DAC subcircuit](#h-8-bit-dac-subcircuit)
   * [I. 9-Bit DAC subcircuit](#i-9-bit-dac-subcircuit)
   * [J. 10-Bit-DAC](#j-10-bit-dac)
-  * [Vout v/s Digital Code Graph for 10-Bit DAC](#Vout-v/s-Digital-Code-Graph-for-10-Bit-DAC)
+  * [Vout v/s Digital Code Graph for 10-Bit DAC](#Vout-vs-Digital-Code-Graph-for-10-Bit-DAC)
   * [INL(LSB) v/s Digital Code Graph for 10-Bit DAC](https://github.com/xzlashutosh/avsddac_3v3#inllsb-vs-digital-code-graph-for-10-bit-dac)
   * [DNL(LSB) v/s Digital Code Graph for 10-Bit DAC](https://github.com/xzlashutosh/avsddac_3v3#dnllsb-vs-digital-code-graph-for-10-bit-dac)
 - [6. Layout and Simulations](#6-layout-and-simulations)
@@ -219,7 +219,7 @@ Given below is the block diagram of the DAC -
 
 <img width="1323" alt="image" src="https://user-images.githubusercontent.com/110079648/218563872-b85f1ceb-0b25-4f95-92ce-90a76fdac19f.png">
 
-### Vout v/s Digital Code Graph for 10-Bit DAC
+### Vout vs Digital Code Graph for 10-Bit DAC
 
 ### DNL(LSB) v/s Digital Code Graph for 10-Bit DAC
 
