@@ -51,59 +51,23 @@ In SPICE simulation the transfer function can be aqcuired using a transient anal
 ![Complete DAC](https://user-images.githubusercontent.com/6376127/192506303-bdb3a85e-4050-44f3-8655-eef9c75d7447.jpeg)
 
 A complete DAC as show in Fig. 2 typically involves a output buffer stage using an integrated opamp, a precise voltage reference and I/O multiplexer using SPI or I2C with input buffer. Without the [sample&hold (SH) output buffer stage](https://www.analog.com/media/cn/training-seminars/tutorials/mt-090.pdf) the DAC is classified as a potentiometric DAC or *digital potentiometer*. Fabricated high precision DACs are [laser trimmed](https://en.wikipedia.org/wiki/Laser_trimming) and have [ESD I/O pins](https://www.ti.com/lit/ds/symlink/dac161s055.pdf) to protect the pins from unwanted ESD events.
+### Potentiometric DAC Architecture Design
 
-### Design
-Several DAC core designs have been published, each with trade-offs in terms of silicon area, speed, precision and other metrics. The presented overview is by no means comprehensive and only discusses resistive DAC (as opposed to [capacitive DAC](https://www.uio.no/studier/emner/matnat/ifi/IN5220/v21/timeplan/in5220_v21_ex04_sol.pdf)) designs based on voltage reference sources and with voltage output. A good comprehensive and practical reference is the [Data Conversion Handbook](https://www.analog.com/en/education/education-library/data-conversion-handbook.html) (2005) edited by Walt Kester from Analog Devices.
+The basic idea is to divide the voltage into N different voltage values in the range of Vref+ and Vref- for an N-Bit DAC. The design used here to achieve this is the simple resistor string DAC which consists of resistors in series. These resistors are then connected to various switches in such a fashion that it routes the exact voltage to the output.
 
-- Resistor string ([thermometer/fully decoded](https://www.researchgate.net/publication/266008269_MT-014_TUTORIAL_Basic_DAC_Architectures_I_String_DACs_and_Thermometer_Fully_Decoded_DACs)) design. This design requires 2<sup>^n</sup> resistors and thus requires a large area. For large n (>10 bit) it becomes hard to correctly match the resistors. The resistors have a process dependent minimum size such that process variance will not effect it much (the matching problem). Typically a decoder block is added to switch the 2<sup>^n</sup> transistors with just n inputs. A variant to this decoder design is the hierarchical design used in this work where the decoder is integrated in lower level DAC blocks (left most design). It offers good DNL.
+The problem of the largeness of the circuit is reduced by building hierarchical subcircuits of switch, 2 Bit, 3 Bit, 4 Bit,....., 9 Bit DAC, and then two 9 Bit DAC is used to build the 10-Bit potentiometric DAC.
 
-![Resistor string architectures](https://user-images.githubusercontent.com/6376127/192521415-2a7db1e6-20f0-49a8-9b1a-962bccb07373.png)
-Image credits: [UiO IN5220 course material](https://www.uio.no/studier/emner/matnat/ifi/IN5220/v21/timeplan/in5220_v21_06_dac.pdf) 
+Have a look at the simplified architecture for potentiometric-DAC given below
 
-- Binary weighted (encoded) design. This design reduces the amount resistors from 2<sup>^n</sup> to just n. The trade-off is that each an increase in variation of resistors from just 1 in resistor string to n in binary weighted designs. Binary weighted designs also offer the worse DNL characteristic. 
-![Binary Weighted architecture](https://user-images.githubusercontent.com/6376127/192524723-82377320-a10c-4dd4-b0fa-39abf8acf887.png)
-Image credits: [UiO IN5220 course material](https://www.uio.no/studier/emner/matnat/ifi/IN5220/v21/timeplan/in5220_v21_06_dac.pdf) 
+<p align="center">
+  <img width="7000" height="700" src="https://github.com/xzlashutosh/avsddac_3v3/blob/master/subcircuits/An%20overview%20of%2010-Bit%20PotDAC.png">
+</p>
 
-- R-2R (encoded) design. This design reduces the amount of resistors from 2<sup>^n</sup> to just 2n and decreases the variation in resistors from n to 2 compared to binary weighted designs.
-![R-2R architecture](https://user-images.githubusercontent.com/6376127/192525477-65bf20dd-fb80-45ba-8922-417671c30629.png)
-Image credits: [UiO IN5220 course material](https://www.uio.no/studier/emner/matnat/ifi/IN5220/v21/timeplan/in5220_v21_06_dac.pdf) 
+Given below is the block diagram of the DAC - 
 
-- Segmented (hybrid) design. In a segmented or hybrid design two or more DACs are combined to mitigate some of the issues such as area or resistor variance. Segmented DAC designs typically have one DAC architecture handling the least significant bits (LSB) and another handling the rest (the most significant bits, MSB). Segmented DACs allow for very high speed designs and offer good trade-offs between area, power and performance. 
-![Segmented architecture](https://user-images.githubusercontent.com/6376127/192537404-765f921f-ac82-4c44-ab7e-bd05697d52e7.png)
-Image credits: [Walt Kester, introduction to segmented DAC](https://www.researchgate.net/publication/238727450_Basic_DAC_Architectures_III_Segmented_DACs)
-
-- PWM DAC https://www.edn.com/phased-array-pwm-dac/
-
-# Related work
-- 1st generation DAC (2020) by Ashutosh Sharma. [Blog](https://www.vlsisystemdesign.com/10bit-dac-osu180nm/) [Repository](https://github.com/xzlashutosh/avsddac_3v3)
-- 2nd generation DAC (2021) by Shalini Kanna, Harshitha Basavaraju, Skandha Deepsita, Kunal Ghosh. [Repository](https://github.com/vsdip/avsddac_3v3_sky130_v1)
-- 3rd generation DAC (2022) by Steven Bos. This work
-
-# Main contributions
-- Comparison of SPICE simulation engines (ngspice, xyce serial, xyce parallel, hspice) 
-- Schematic redesign of analog switch with improved transmission gate, up/down shifter, 5V transistor type, transistor L/W sizing
-- Schematic redesign of n-bit DACs with uniform resistor ladder and transistor gate capacitance
-- Layout redesign of analog switch 
-- Layout redesign of n-bit DACs
-- Static and dynamic power analysis
-- Improved INL and DNL characteristics
-- Integration of design in Efabless caravan (analog harness)
-- Documentation
-- New features: 
-  - Enable/disable component switch to save power when unused
-  - Triggerable output stage to create pulse trains
-  - Bipolar DAC enabling both positive and negative voltage steps 
-    
-# Open source tools used and installation
-- XSCHEM for schematic drawing and graphing. [Website](http://repo.hu/projects/xschem/xschem_man/xschem_man.html). [Repository](https://github.com/StefanSchippers/xschem)
-- XYCE serial/parallel for simulation. [Website](https://xyce.sandia.gov/). [Repository](https://github.com/Xyce/Xyce) 
-- MAGIC for layout. [Website](http://opencircuitdesign.com/magic/). [Repository](https://github.com/RTimothyEdwards/magic))
-- KLAYOUT for GDS viewing. [Website](https://www.klayout.de/). [Repository](https://github.com/KLayout/klayout)
-- OPENPDK for patched open PDK [Website](http://opencircuitdesign.com/open_pdks/index.html). [Repository](https://github.com/RTimothyEdwards/open_pdks)
-- OPENLANE w/ OPENROAD for toolchain HDL to GDSII. [Website](https://openlane.readthedocs.io/en/latest/). [Repository](https://github.com/The-OpenROAD-Project/OpenLane) 
-- EFABLESS ANALOG CARAVEL harness for on-chip debugging and control. [Website](https://github.com/efabless/caravel_user_project_analog/blob/main/docs/source/index.rst). [Repository](https://github.com/efabless/caravel_user_project_analog )  
-
-Please refer to the websites or github repo's to install the tools. The installation process gets updates regularly so the website or repo are the best source of information. Most tools are installed on linux platforms. With Windows Subsystem for Linux (WSL) we can run Linux with Windows and retain full Windows Explorer (file managmenent) functionality and high CPU/GPU performance compared to a virtual machine. Docker containers such as [FOSS-ASIC-TOOLS](https://github.com/efabless/foss-asic-tools) offer to install all the above tools with just one installation which is convenient for most users. In my case I build each tool individually from source code as I needed newer versions that were not available yet. 
+<p align="center">
+  <img width="7000" height="700" src="https://github.com/xzlashutosh/avsddac_3v3/blob/master/subcircuits/overview%20of%20design.png">
+</p>
 
 # IP Design Specs
 ![IP block](https://user-images.githubusercontent.com/6376127/192647277-81dd892c-05ba-43ed-8eb2-6ade996fda49.png)
@@ -127,104 +91,6 @@ Please refer to the websites or github repo's to install the tools. The installa
 |Gain Error| x | x |
 |Offset Error| xE-07 V | xE-07 V |
 
-# Comparison of SPICE simulators
-
-Work in progress. 
-
-- NGSPICE SERIAL (open source)
-- NGSPICE PARALLEL (open source)
-- XYCE SERIAL (open source)
-- XYCE PARALLEL (open source)
-- HSPICE SERIAL (commercial)
-- HSPICE PARALLEL (commercial) NOT TESTED
-
-
-## Table of Contents
-- [1. Introduction to Potentiometric Digital to Analog Converter](#1-introduction-to-potentiometric-digital-to-analog-converter)
-- [2. Potentiometric DAC Architecture Design](#2-potentiometric-dac-architecture-design)
-- [3. Specification List](#3-specification-list)
-- [4. EDA Tools Used](#4-eda-tools-used)
-- [5. Pre-layout and Simulations](#5-pre-layout-and-simulations)
-  * [A. Switch](#a-switch)
-  * [B. 2-Bit DAC subcircuit](#b-2-bit-dac-subcircuit)
-  * [C. 3-Bit DAC subcircuit](#c-3-bit-dac-subcircuit)
-  * [D. 4-Bit DAC subcircuit](#d-4-bit-dac-subcircuit)
-  * [E. 5-Bit DAC subcircuit](#e-5-bit-dac-subcircuit)
-  * [F. 6-Bit DAC subcircuit](#f-6-bit-dac-subcircuit)
-  * [G. 7-Bit DAC subcircuit](#g-7-bit-dac-subcircuit)
-  * [H. 8-Bit DAC subcircuit](#h-8-bit-dac-subcircuit)
-  * [I. 9-Bit DAC subcircuit](#i-9-bit-dac-subcircuit)
-  * [J. 10-Bit-DAC](#j-10-bit-dac)
-  * [Vout v/s Digital Code Graph for 10-Bit DAC](https://github.com/xzlashutosh/avsddac_3v3#vout-vs-digital-code-graph-for-10-bit-dac)
-  * [INL(LSB) v/s Digital Code Graph for 10-Bit DAC](https://github.com/xzlashutosh/avsddac_3v3#inllsb-vs-digital-code-graph-for-10-bit-dac)
-  * [DNL(LSB) v/s Digital Code Graph for 10-Bit DAC](https://github.com/xzlashutosh/avsddac_3v3#dnllsb-vs-digital-code-graph-for-10-bit-dac)
-- [6. Layout and Simulations](#6-layout-and-simulations)
-  * [A. Switch Layout](#a-switch-layout)
-  * [B. Resistor Layout](#b-resistor-layout)
-  * [C. Capacitor Layout](#c-capacitor-layout)
-    + [Modification done in osu180nm to make use of a capacitor as a device -](#modification-done-in-osu180nm-to-make-use-of-a-capacitor-as-a-device--)
-    + [Limitation of osu180 PDK -](#limitation-of-osu180-pdk--)
-  * [D. 2-Bit DAC Subcircuit Layout](#d-2-bit-dac-subcircuit-layout)
-  * [E. 3-Bit DAC Subcircuit Layout](#e-3-bit-dac-subcircuit-layout)
-  * [F. 4-Bit DAC Subcircuit Layout](#f-4-bit-dac-subcircuit-layout)
-  * [G. 5-Bit DAC Subcircuit Layout](#g-5-bit-dac-subcircuit-layout)
-  * [H. 6-Bit DAC Subcircuit Layout](#h-6-bit-dac-subcircuit-layout)
-  * [I. 7-Bit DAC Subcircuit Layout](#i-7-bit-dac-subcircuit-layout)
-  * [J. 8-Bit DAC Subcircuit Layout](#j-8-bit-dac-subcircuit-layout)
-  * [K. 9-Bit DAC Subcircuit Layout](#k-9-bit-dac-subcircuit-layout)
-  * [L. 10-Bit-DAC Layout](#l-10-bit-dac-layout)
-  * [Vout v/s Digital Code Graph for 10-Bit DAC](#vout-v-s-digital-code-graph-for-10-bit-dac-1)
-  * [INL(LSB) v/s Digital Code Graph for 10-Bit DAC](#inl-lsb--v-s-digital-code-graph-for-10-bit-dac-1)
-  * [DNL(LSB) v/s Digital Code Graph for 10-Bit DAC](#dnl-lsb--v-s-digital-code-graph-for-10-bit-dac-1)
-- [7. Instructions to get started with the design](#7-instructions-to-get-started-with-the-design)
-  * [For Pre-Layout Simulation -](#for-pre-layout-simulation--)
-  * [For Post-Layout Simulation -](#for-post-layout-simulation--)
-- [8. Author](#8-author)
-- [9. Acknowledgments](#9-acknowledgments)
-- [10. Contact Information -](#10-contact-information--)
-
-## 2. Potentiometric DAC Architecture Design
-
-The basic idea is to divide the voltage into N different voltage values in the range of Vref+ and Vref- for an N-Bit DAC. The design used here to achieve this is the simple resistor string DAC which consists of resistors in series. These resistors are then connected to various switches in such a fashion that it routes the exact voltage to the output.
-
-The problem of the largeness of the circuit is reduced by building hierarchical subcircuits of switch, 2 Bit, 3 Bit, 4 Bit,....., 9 Bit DAC, and then two 9 Bit DAC is used to build the 10-Bit potentiometric DAC.
-
-Have a look at the simplified architecture for potentiometric-DAC given below
-
-<p align="center">
-  <img width="7000" height="700" src="https://github.com/xzlashutosh/avsddac_3v3/blob/master/subcircuits/An%20overview%20of%2010-Bit%20PotDAC.png">
-</p>
-
-Given below is the block diagram of the DAC - 
-
-<p align="center">
-  <img width="7000" height="700" src="https://github.com/xzlashutosh/avsddac_3v3/blob/master/subcircuits/overview%20of%20design.png">
-</p>
-
-## 3. Specification List
-
-| Parameter| Description| Min | Type | Max | Unit | Condition |
-| :---:  | :-: | :-: | :-: | :---:  | :-: | :-: |
-|RL|Load resistance| 50|||Mohm|T=-40 to 85C|
-|CL|Load capacitance|||1|pF|T=-40 to 85C|
-|VDDA|Analog supply| |3.3||V|T=-40 to 85C|
-|VDD|Digital supply voltage||1.8||V|T=-40 to 85C|
-|VREFH|Reference voltage high|||3.3|V|T=-40 to 85C|
-|VREFL|Reference voltage low|0|||V|T=-40 to 85C|
-|RES|Resolution| |10||bit|T=27C|
-|VFS|Full Scale Voltage|0| |3.291627| V |T=27C|
-
-| Parameter| Pre-layout | Post-Layout |
-| :---:  | :-: | :-: |
-|DNL| -0.999893345 LSB to 2.03065020 LSB | -1.182952606 LSB to 2.380283181 LSB |
-|INL| -1.953038429 LSB to 0.527216491 LSB| -3.698306813 LSB to 0.181125461 LSB |
-|Gain Error| 0 | 0 |
-|Offset Error| 2.12E-07 V | 2.14E-07 V |
-
-## 4. EDA Tools Used 
-The design has been built using open-source EDA tools. The library used is osu180nm. 
-
-I have used [eSim](https://esim.fossee.in/downloads) to build schematic, [ngSpice](http://ngspice.sourceforge.net/download.html) to run simulations and verify the circuit. [Magic](http://opencircuitdesign.com/magic/) has been used to lay-out the circuit.
 
 ## 5. Pre-layout and Simulations
 The complete circuit of 10-Bit potentiometric DAC is built hierarchically using the following subcircuits.
