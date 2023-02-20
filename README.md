@@ -200,7 +200,7 @@ Given below is the block diagram of the DAC -
 ### Prelayout Characterization
 
 <img width="723" alt="image" src="https://user-images.githubusercontent.com/110079648/220153757-2bbfa997-5c4f-42cf-b6e7-c081b67ff748.png">
-source : Analog Devices ( https://www.analog.com/en/technical-articles/adjust-and-calibrate-offsetgain-error-in-precision-dac-calculation--maxim-integrated.html )
+ **Source:** [Analog Devices](https://www.analog.com/en/technical-articles/adjust-and-calibrate-offsetgain-error-in-precision-dac-calculation--maxim-integrated.html)
 
 ![IMAGE 2023-02-20 22:16:17](https://user-images.githubusercontent.com/110079648/220162669-29bde9a4-aeea-4a53-ba54-222bd0679789.jpg)
 
