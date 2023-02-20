@@ -202,15 +202,26 @@ Given below is the block diagram of the DAC -
 <img width="723" alt="image" src="https://user-images.githubusercontent.com/110079648/220153757-2bbfa997-5c4f-42cf-b6e7-c081b67ff748.png">
   **Source:** 
  [Analog Devices](https://www.analog.com/en/technical-articles/adjust-and-calibrate-offsetgain-error-in-precision-dac-calculation--maxim-integrated.html)
+ 
+ <img width="1254" alt="image" src="https://user-images.githubusercontent.com/110079648/220169131-fb9f05b8-673f-4bbc-b769-1d515c1fd046.png">
+
+- From Above plot Offset Error is Zero and Gain Error is -0.006457
 
 ![IMAGE 2023-02-20 22:16:17](https://user-images.githubusercontent.com/110079648/220162669-29bde9a4-aeea-4a53-ba54-222bd0679789.jpg)
 
+<img width="1331" alt="image" src="https://user-images.githubusercontent.com/110079648/220169811-80764c6e-67c5-4e3c-8cbe-e5c300ca6f7c.png">
+
+<img width="1333" alt="image" src="https://user-images.githubusercontent.com/110079648/220169980-913a5072-f99b-4453-bf20-5ccf805789cf.png">
+
+<img width="1334" alt="image" src="https://user-images.githubusercontent.com/110079648/220170211-f08d0d25-eb89-4e2c-a49e-19b87eece415.png">
+
+
 | Parameter| Pre-layout | 
 | :---:  | :-: |
-|DNL| -0.779 LSB to 1.62131 or 0.146269 LSB |
-|INL| -0.x LSB to 0.x LSB|
-|Gain Error| x |
-|Offset Error| xE-07 V |
+|INL| -0.779 LSB to 1.62131 or 0.146269 LSB |
+|DNL| -0.38 LSB to 0.67 LSB|
+|Gain Error| -0.006457 |
+|Offset Error| 0 V |
 
 
 
