@@ -28,9 +28,7 @@ This project is part of the **Mixed Signal design of ASIC's Course in IIIT Benga
   * [H. 8-Bit DAC subcircuit](#h-8-bit-dac-subcircuit)
   * [I. 9-Bit DAC subcircuit](#i-9-bit-dac-subcircuit)
   * [J. 10-Bit-DAC](#j-10-bit-dac)
-  * [Vout v/s Digital Code Graph for 10-Bit DAC](#Vout-vs-Digital-Code-Graph-for-10-Bit-DAC)
-  * [DNL(LSB) v/s Digital Code Graph for 10-Bit DAC](#DNL-LSB-vs-Digital-Code-Graph-for-10-Bit-DAC)
-  * [INL(LSB) v/s Digital Code Graph for 10-Bit DAC](#INL-LSB-vs-Digital-Code-Graph-for-10-Bit-DAC)
+  * [Prelayout Characterization](#Prelayout-Characterization)
 - [7. Post-layout and Simulations](#7-post-layout-and-simulations)
 - [8. Contributors ](#8-Contributors)
 - [9. Acknowledgments](#9-Acknowledgments)
@@ -200,9 +198,9 @@ Given below is the block diagram of the DAC -
 ### Prelayout Characterization
 
 <img width="723" alt="image" src="https://user-images.githubusercontent.com/110079648/220153757-2bbfa997-5c4f-42cf-b6e7-c081b67ff748.png">
-  **Source:** 
- [Analog Devices](https://www.analog.com/en/technical-articles/adjust-and-calibrate-offsetgain-error-in-precision-dac-calculation--maxim-integrated.html)
- 
+Source: [Analog Devices](https://www.analog.com/en/technical-articles/adjust-and-calibrate-offsetgain-error-in-precision-dac-calculation--maxim-integrated.html)
+
+> INL-LSB vs Digital Code Graph for 10-Bit DAC 
  <img width="1254" alt="image" src="https://user-images.githubusercontent.com/110079648/220169131-fb9f05b8-673f-4bbc-b769-1d515c1fd046.png">
 
 - From Above plot Offset Error is Zero and Gain Error is -0.006457
@@ -210,6 +208,8 @@ Given below is the block diagram of the DAC -
 ![IMAGE 2023-02-20 22:16:17](https://user-images.githubusercontent.com/110079648/220162669-29bde9a4-aeea-4a53-ba54-222bd0679789.jpg)
 
 <img width="1331" alt="image" src="https://user-images.githubusercontent.com/110079648/220169811-80764c6e-67c5-4e3c-8cbe-e5c300ca6f7c.png">
+
+> DNL-LSB vs Digital Code Graph for 10-Bit DAC
 
 <img width="1333" alt="image" src="https://user-images.githubusercontent.com/110079648/220169980-913a5072-f99b-4453-bf20-5ccf805789cf.png">
 
@@ -223,17 +223,6 @@ Given below is the block diagram of the DAC -
 |Gain Error| -0.006457 |
 |Offset Error| 0 V |
 
-
-
-
-
-
-### Vout vs Digital Code Graph for 10-Bit DAC
-
-### DNL-LSB vs Digital Code Graph for 10-Bit DAC
-
-
-### INL-LSB vs Digital Code Graph for 10-Bit DAC
 
 ## 7. Post-layout and Simulations
 
