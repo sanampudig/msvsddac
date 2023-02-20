@@ -103,12 +103,12 @@ Given below is the block diagram of the DAC -
 |VREFH|Reference voltage high|||3.3|V|T=-40 to 85C|
 |VREFL|Reference voltage low|-3.3|||V|T=-40 to 85C|
 |RES|Resolution| |10||bit|T=27C|
-|VFS|Full Scale Voltage|-3.3| |3.291627| V |T=27C|
+|VFS|Full Scale Voltage|-3.3| |3.294| V |T=27C|
 |URATE|Update rate||1 || MSamples/Sec |T=27C|
 
 | Parameter| Pre-layout | Post-Layout |
 | :---:  | :-: | :-: |
-|DNL| -0.x LSB to 0.x LSB | -0.x LSB to 0.x LSB |
+|DNL| -0.779 LSB to 1.62131 or 0.146269 LSB | -0.x LSB to 0.x LSB |
 |INL| -0.x LSB to 0.x LSB| -0.x LSB to 0.x LSB |
 |Gain Error| x | x |
 |Offset Error| xE-07 V | xE-07 V |
