@@ -2,6 +2,9 @@
 # Mixed Signal 10-Bit Potentiometric Digital to Analog Converter Based on SCL180nm Process Node {msvsddac}
 
 
+![Uploading Mixed Signal copy.jpg…]()
+
+
 ## 1. Introduction to Potentiometric Digital to Analog Converter
 The project aims to design a 10-bit Potentiometric Digital to Analog Converter using Cadence tools with scl 180nm technology node.
 
@@ -199,7 +202,7 @@ Given below is the block diagram of the DAC -
 
 <img width="723" alt="image" src="https://user-images.githubusercontent.com/110079648/220153757-2bbfa997-5c4f-42cf-b6e7-c081b67ff748.png">
 
-[Analog Devices]([https://github.com/sanampudig/msvsddac/blob/main/potentiometricDAC_IP.pdf](https://www.analog.com/en/technical-articles/adjust-and-calibrate-offsetgain-error-in-precision-dac-calculation--maxim-integrated.html))
+Source: [Analog Devices]([https://github.com/sanampudig/msvsddac/blob/main/potentiometricDAC_IP.pdf](https://www.analog.com/en/technical-articles/adjust-and-calibrate-offsetgain-error-in-precision-dac-calculation--maxim-integrated.html))
 
 
 > INL-LSB vs Digital Code Graph for 10-Bit DAC 
