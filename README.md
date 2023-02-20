@@ -1,9 +1,7 @@
 
 # Mixed Signal 10-Bit Potentiometric Digital to Analog Converter Based on SCL180nm Process Node {msvsddac}
 
-
-![Uploading Mixed Signal copy.jpg…]()
-
+![Mixed Signal copy](https://user-images.githubusercontent.com/110079648/220172010-328e05f5-e364-4d85-9435-302e7f8df46e.jpg)
 
 ## 1. Introduction to Potentiometric Digital to Analog Converter
 The project aims to design a 10-bit Potentiometric Digital to Analog Converter using Cadence tools with scl 180nm technology node.
