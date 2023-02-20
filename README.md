@@ -198,7 +198,9 @@ Given below is the block diagram of the DAC -
 ### Prelayout Characterization
 
 <img width="723" alt="image" src="https://user-images.githubusercontent.com/110079648/220153757-2bbfa997-5c4f-42cf-b6e7-c081b67ff748.png">
-Source: [Analog Devices](https://www.analog.com/en/technical-articles/adjust-and-calibrate-offsetgain-error-in-precision-dac-calculation--maxim-integrated.html)
+
+[Analog Devices]([https://github.com/sanampudig/msvsddac/blob/main/potentiometricDAC_IP.pdf](https://www.analog.com/en/technical-articles/adjust-and-calibrate-offsetgain-error-in-precision-dac-calculation--maxim-integrated.html))
+
 
 > INL-LSB vs Digital Code Graph for 10-Bit DAC 
  <img width="1254" alt="image" src="https://user-images.githubusercontent.com/110079648/220169131-fb9f05b8-673f-4bbc-b769-1d515c1fd046.png">
@@ -218,7 +220,7 @@ Source: [Analog Devices](https://www.analog.com/en/technical-articles/adjust-and
 
 | Parameter| Pre-layout | 
 | :---:  | :-: |
-|INL| -0.779 LSB to 1.62131 or 0.146269 LSB |
+|INL| -0.779 LSB to 1.64701 or 0.146269 LSB |
 |DNL| -0.38 LSB to 0.67 LSB|
 |Gain Error| -0.006457 |
 |Offset Error| 0 V |
