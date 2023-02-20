@@ -92,7 +92,8 @@ Given below is the block diagram of the DAC -
 </p>
 
 ## 5. IP Design Specs
-![IP block](https://user-images.githubusercontent.com/6376127/192647277-81dd892c-05ba-43ed-8eb2-6ade996fda49.png)
+
+![IMAGE 2023-02-20 22:22:27](https://user-images.githubusercontent.com/110079648/220163928-56d1bc6a-6417-4dd2-be21-b7245bbf311d.jpg)
 
 | Parameter| Description| Min | Typ | Max | Unit | Condition |
 | :---:  | :-: | :-: | :-: | :---:  | :-: | :-: |
@@ -106,12 +107,7 @@ Given below is the block diagram of the DAC -
 |VFS|Full Scale Voltage|-3.3| |3.294| V |T=27C|
 |URATE|Update rate||1 || MSamples/Sec |T=27C|
 
-| Parameter| Pre-layout | Post-Layout |
-| :---:  | :-: | :-: |
-|DNL| -0.779 LSB to 1.62131 or 0.146269 LSB | -0.x LSB to 0.x LSB |
-|INL| -0.x LSB to 0.x LSB| -0.x LSB to 0.x LSB |
-|Gain Error| x | x |
-|Offset Error| xE-07 V | xE-07 V |
+
 
 
 ## 6. Pre-layout and Simulations
@@ -200,6 +196,25 @@ Given below is the block diagram of the DAC -
 > Simulation
 
 <img width="1323" alt="image" src="https://user-images.githubusercontent.com/110079648/218563872-b85f1ceb-0b25-4f95-92ce-90a76fdac19f.png">
+
+### Prelayout Characterization
+
+<img width="723" alt="image" src="https://user-images.githubusercontent.com/110079648/220153757-2bbfa997-5c4f-42cf-b6e7-c081b67ff748.png">
+source : Analog Devices ( https://www.analog.com/en/technical-articles/adjust-and-calibrate-offsetgain-error-in-precision-dac-calculation--maxim-integrated.html )
+
+![IMAGE 2023-02-20 22:16:17](https://user-images.githubusercontent.com/110079648/220162669-29bde9a4-aeea-4a53-ba54-222bd0679789.jpg)
+
+| Parameter| Pre-layout | 
+| :---:  | :-: |
+|DNL| -0.779 LSB to 1.62131 or 0.146269 LSB |
+|INL| -0.x LSB to 0.x LSB|
+|Gain Error| x |
+|Offset Error| xE-07 V |
+
+
+
+
+
 
 ### Vout vs Digital Code Graph for 10-Bit DAC
 
