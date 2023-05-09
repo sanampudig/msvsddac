@@ -233,6 +233,9 @@ Layout design plays a fundamental role in the development of Potentiomentric Dig
 
 Cadence Virtuoso Layout XL offers a wide range of capabilities and features, empowering designers to create intricate and optimized layouts for complex integrated circuits. The software provides an intuitive and user-friendly environment, allowing designers to efficiently manipulate and arrange the various components of the circuit, including transistors, interconnects, and other circuit elements. With the assistance of Cadence Virtuoso Layout XL, designers can precisely position and connect the circuit elements, ensuring that the layout adheres to the design specifications, electrical constraints, and manufacturing rules. 
 
+
+
+
 ![mx](https://user-images.githubusercontent.com/110079648/237019307-5e1ef000-50a6-419c-860f-125bd5bdebb4.png)
 
 Figure: Final Layout of PotDAC
