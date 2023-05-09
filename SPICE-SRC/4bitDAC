@@ -1,0 +1,101 @@
+// Generated for: spectre
+// Generated on: May  9 11:47:51 2023
+// Design library name: GopalaKirshna_MixedSignal
+// Design cell name: 4bitDAC
+// Design view name: schematic
+simulator lang=spectre
+global 0
+include "/mnt/cadence_tools/gpdk045_v_6_0/gpdk045/../models/spectre/gpdk045.scs" section=mc
+include "/mnt/cadence_tools/gpdk090_v4.6/libs.oa22/gpdk090/../../models/spectre/gpdk090.scs" section=NN
+include "/mnt/cadence_tools/gpdk180_v3.3/models/spectre/gpdk.scs" section=stat
+
+// Library name: GopalaKirshna_MixedSignal
+// Cell name: 1bitDAC
+// View name: schematic
+subckt GopalaKirshna_MixedSignal_1bitDAC_schematic \1bIN \1bOUT \1bVREFH \
+        \1bVREFL
+    M13 (\1bVREFH LSU2 \1bOUT VSSA) n18 w=5*0.42 l=0.18 as=0.1984 \
+        ad=0.1984 ps=1.88 pd=1.88 m=1
+    M12 (\1bOUT LSU2c \1bVREFL VSSA) n18 w=5*0.42 l=0.18 as=0.1984 \
+        ad=0.1984 ps=1.88 pd=1.88 m=1
+    M11 (LSU2c LSD1c VSSA VSSA) n18 w=0.42 l=0.18 as=0.1984 ad=0.1984 \
+        ps=1.88 pd=1.88 m=1
+    M10 (LSU2 LSD1 VSSA VSSA) n18 w=0.42 l=0.18 as=0.1984 ad=0.1984 \
+        ps=1.88 pd=1.88 m=1
+    M5 (LSD1c LSD1 VSSA VSSA) n18 w=0.42 l=0.18 as=0.1984 ad=0.1984 \
+        ps=1.88 pd=1.88 m=1
+    M4 (LSD1 LSD1c VSSA VSSA) n18 w=0.42 l=0.18 as=0.1984 ad=0.1984 \
+        ps=1.88 pd=1.88 m=1
+    M1 (Abar A VSS VSS) n18 w=0.42 l=0.18 as=0.1984 ad=0.1984 ps=1.88 \
+        pd=1.88 m=1
+    M0 (A \1bIN VSS VSS) n18 w=0.42 l=0.18 as=0.1984 ad=0.1984 ps=1.88 \
+        pd=1.88 m=1
+    M15 (\1bVREFL LSU2 \1bOUT VDDA) p18 w=0.42 l=0.18 as=0.1984 ad=0.1984 \
+        ps=1.88 pd=1.88 m=1
+    M14 (\1bOUT LSU2c \1bVREFH VDDA) p18 w=0.42 l=0.18 as=0.1984 ad=0.1984 \
+        ps=1.88 pd=1.88 m=1
+    M9 (LSU2 LSU2c VDDA VDDA) p18 w=0.42 l=0.18 as=0.1984 ad=0.1984 \
+        ps=1.88 pd=1.88 m=1
+    M8 (LSU2c LSU2 VDDA VDDA) p18 w=0.42 l=0.18 as=0.1984 ad=0.1984 \
+        ps=1.88 pd=1.88 m=1
+    M7 (LSD1c A VDD VDD) p18 w=10*0.42 l=0.18 as=0.1984 ad=0.1984 ps=1.88 \
+        pd=1.88 m=1
+    M6 (LSD1 Abar VDD VDD) p18 w=10*0.42 l=0.18 as=0.1984 ad=0.1984 \
+        ps=1.88 pd=1.88 m=1
+    M3 (Abar A VDD VDD) p18 w=3*0.42 l=0.18 as=0.1984 ad=0.1984 ps=1.88 \
+        pd=1.88 m=1
+    M2 (A \1bIN VDD VDD) p18 w=3*0.42 l=0.18 as=0.1984 ad=0.1984 ps=1.88 \
+        pd=1.88 m=1
+ends GopalaKirshna_MixedSignal_1bitDAC_schematic
+// End of subcircuit definition.
+
+// Library name: GopalaKirshna_MixedSignal
+// Cell name: 2bitDAC
+// View name: schematic
+subckt GopalaKirshna_MixedSignal_2bitDAC_schematic 2bD0 2bD1 \2bOutput \
+        \2bVREFH \2bVREFL
+    R25 (net5 \2bVREFL) rm1 l=(0.23)*(1) w=0.23 m=1 ssegs=1
+    R19 (net3 net5) rm1 l=(0.23)*(1) w=0.23 m=1 ssegs=1
+    R13 (net11 net3) rm1 l=(0.23)*(1) w=0.23 m=1 ssegs=1
+    R8 (\2bVREFH net11) rm1 l=(0.23)*(1) w=0.23 m=1 ssegs=1
+    I5 (2bD1 \2bOutput net13 net14) \
+        GopalaKirshna_MixedSignal_1bitDAC_schematic
+    I4 (2bD0 net14 net5 \2bVREFL) \
+        GopalaKirshna_MixedSignal_1bitDAC_schematic
+    I3 (2bD0 net13 net11 net3) GopalaKirshna_MixedSignal_1bitDAC_schematic
+ends GopalaKirshna_MixedSignal_2bitDAC_schematic
+// End of subcircuit definition.
+
+// Library name: GopalaKirshna_MixedSignal
+// Cell name: 3bitDAC
+// View name: schematic
+subckt GopalaKirshna_MixedSignal_3bitDAC_schematic 3bD0 3bD1 3bD2 \
+        \3bOutput \3bVREFH \3bVREFL
+    I11 (3bD2 \3bOutput net3 net2) \
+        GopalaKirshna_MixedSignal_1bitDAC_schematic
+    I9 (3bD0 3bD1 net3 \3bVREFH net1) \
+        GopalaKirshna_MixedSignal_2bitDAC_schematic
+    I10 (3bD0 3bD1 net2 net1 \3bVREFL) \
+        GopalaKirshna_MixedSignal_2bitDAC_schematic
+ends GopalaKirshna_MixedSignal_3bitDAC_schematic
+// End of subcircuit definition.
+
+// Library name: GopalaKirshna_MixedSignal
+// Cell name: 4bitDAC
+// View name: schematic
+I0 (4bD3 \4bOutput net1 net2) GopalaKirshna_MixedSignal_1bitDAC_schematic
+I2 (4bD0 4bD1 4bD2 net2 net3 \4bVREFL) \
+        GopalaKirshna_MixedSignal_3bitDAC_schematic
+I1 (4bD0 4bD1 4bD2 net1 \4bVREFH net3) \
+        GopalaKirshna_MixedSignal_3bitDAC_schematic
+simulatorOptions options psfversion="1.4.0" reltol=1e-3 vabstol=1e-6 \
+    iabstol=1e-12 temp=27 tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 \
+    maxnotes=5 maxwarns=5 digits=5 cols=80 pivrel=1e-3 \
+    sensfile="../psf/sens.output" checklimitdest=psf 
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+saveOptions options save=allpub
