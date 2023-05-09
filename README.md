@@ -289,6 +289,12 @@ Figure: Lavel~5 Magnifiged picture of Final Layout
 
 Figure: Lavel~6 Magnifiged picture of Final Layout
 
+## Future Work
+
+The preliminary characterization and simulations of the design have been conducted successfully, yielding positive results. This signifies that the design has undergone initial testing and evaluation, providing valuable insights into its performance and functionality. With the completion of these preliminary steps, the design is now ready to proceed to the next stage, which involves transferring it to the proper layout.
+
+During the layout stage, the design is translated into a physical representation, with components being placed and interconnected to create an optimized layout that meets the design specifications. However, in the present case, certain steps like **Design Rule Check (DRC), Layout Versus Schematic (LVS), and post-layout simulations** in the layout process are still **pending** due to **integration issues** with the **SCL180nm Process Design Kit (PDK)**.
+
 
 ## 8. Contributors 
 
