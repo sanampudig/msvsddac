@@ -30,7 +30,7 @@ This project is part of the **Mixed Signal design of ASIC's Course in IIIT Benga
   * [I. 9-Bit DAC subcircuit](#i-9-bit-dac-subcircuit)
   * [J. 10-Bit-DAC](#j-10-bit-dac)
   * [Prelayout Characterization](#Prelayout-Characterization)
-- [7. Post-layout and Simulations](#7-post-layout-and-simulations)
+- [7. Layout and Future work](#7-Layout-and-Future-Work)
 - [8. Contributors ](#8-Contributors)
 - [9. Acknowledgments](#9-Acknowledgments)
 - [10. Contact Information](#10-Contact-Information)
@@ -227,7 +227,7 @@ Source: [Analog Devices]([https://github.com/sanampudig/msvsddac/blob/main/poten
 |Offset Error| 0 V |
 
 
-## 7. Post-layout and Simulations
+## 7. Layout and Future Work
 
 ## 8. Contributors 
 
