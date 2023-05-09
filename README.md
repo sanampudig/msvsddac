@@ -233,13 +233,41 @@ Layout design plays a fundamental role in the development of Potentiomentric Dig
 
 Cadence Virtuoso Layout XL offers a wide range of capabilities and features, empowering designers to create intricate and optimized layouts for complex integrated circuits. The software provides an intuitive and user-friendly environment, allowing designers to efficiently manipulate and arrange the various components of the circuit, including transistors, interconnects, and other circuit elements. With the assistance of Cadence Virtuoso Layout XL, designers can precisely position and connect the circuit elements, ensuring that the layout adheres to the design specifications, electrical constraints, and manufacturing rules. 
 
+<img width="1129" alt="image" src="https://user-images.githubusercontent.com/110079648/237041389-2d84bbf5-5c04-4b7f-917b-f3a7e1d7054e.png">
 
+Figure: Layout of 1Bit PotDAC or 1-channel analog switch or 2:1 analog MUX
 
+![Screenshot from 2023-05-09 13-05-38](https://user-images.githubusercontent.com/110079648/237041660-52f64942-6347-4f98-92d0-d8c3b3affc00.png)
+
+Figure: Layout of 2-Bit-PotDAC
 
 ![mx](https://user-images.githubusercontent.com/110079648/237019307-5e1ef000-50a6-419c-860f-125bd5bdebb4.png)
 
 Figure: Final Layout of PotDAC
 
+<img width="1179" alt="image" src="https://user-images.githubusercontent.com/110079648/237042348-808c6b0d-d166-4a0e-b212-71d1968cdc00.png">
+
+Figure: Lavel~1 Magnifiged picture of Final Layout
+
+<img width="1174" alt="image" src="https://user-images.githubusercontent.com/110079648/237042610-f8bbc7c9-f05b-461d-9d9c-b50f23587f58.png">
+
+Figure: Lavel~2 Magnifiged picture of Final Layout
+
+<img width="1081" alt="image" src="https://user-images.githubusercontent.com/110079648/237042821-3b4f5eda-fd8f-415a-b499-0dd96f7b5299.png">
+
+Figure: Lavel~3 Magnifiged picture of Final Layout
+
+<img width="727" alt="image" src="https://user-images.githubusercontent.com/110079648/237042959-8414f926-f6a6-48bc-8d41-aa571ad8b6a9.png">
+
+Figure: Lavel~4 Magnifiged picture of Final Layout
+
+<img width="1194" alt="image" src="https://user-images.githubusercontent.com/110079648/237043128-bd2d355b-d08f-4440-8280-55d101a29543.png">
+
+Figure: Lavel~5 Magnifiged picture of Final Layout
+
+<img width="1177" alt="image" src="https://user-images.githubusercontent.com/110079648/237043269-77d73b0b-c879-4b63-8d2c-25a052bab204.png">
+
+Figure: Lavel~6 Magnifiged picture of Final Layout
 
 
 ## 8. Contributors 
